@@ -1,6 +1,7 @@
 import { Transform, Type } from 'class-transformer';
 import {
   ArrayNotEmpty,
+  IsAlphanumeric,
   IsArray,
   IsBoolean,
   IsDate,
@@ -10,6 +11,7 @@ import {
   IsOptional,
   IsString,
   IsUrl,
+  MinLength,
   ValidateNested
 } from 'class-validator';
 
@@ -58,4 +60,9 @@ export class CreateUserDto {
   @ValidateNested()
   @Type(() => Address)
   address: Address;
+
+  @IsString()
+  @IsAlphanumeric()
+  @MinLength(6)
+  password: string;
 }
